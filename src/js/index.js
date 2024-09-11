@@ -14,31 +14,37 @@
 const botoesCarrossel = document.querySelectorAll(".botao");
 const imagens = document.querySelectorAll(".imagem");
 const informacoes = document.querySelectorAll(".informacoes");
-
 // - passo 2 - dar um jeito de identificar o clique do usuário no botão
 botoesCarrossel.forEach((botao, indice) => {
     botao.addEventListener("click", () => {
-        // - passo 3 - desmarcar o botão selecionado anterior
-        desativarBotaoSelecionado();
+        //remove marcação do ultimo botão
+        let botaoSelec = document.querySelector('.selecionado')
+        botaoSelec.classList.remove('selecionado')
 
-        // 	- passo 4 - marcar o botão clicado como se estivesse selecionado
+        //oculta ultima img
+        let imagemAtiva = document.querySelector(".ativa");
+        imagemAtiva.classList.remove("ativa");
+
+        //oculta infomações 
+        let informacoesAtiva = document.querySelector(".informacoes.ativa");
+        informacoesAtiva.classList.remove("ativa");
+        // Linhas:29-31 |Ativa o contéudo selecionado
+        botao.classList.add('selecionado')
+        imagens[indice].classList.add('ativa')
+        informacoes[indice].classList.add('ativa')
+
+        document.documentElement.style.setProperty('--corAtiva', `var(--dg${indice})`)
+        //Abaixo funções da versão antiga em ordem.
+        /* desativarBotaoSelecionado();
         marcarBotaoSelecionado(botao);
-
-        // - passo 5 - esconder a imagem anteriormente selecionada
         esconderImagemAtiva();
-
-        // - passo 6 - fazer aparecer a imagem correspondente ao botão clicado
         mostrarImagemDeFundo(indice);
-
-        // - passo 7 - esconder a informação do dragão anteriormente selecionado
         esconderInformacoesAtivas();
-
-        // - passo 8 - mostrar a informação do dragão referente ao botão clicado
-        mostrarInformacoes(indice);
+        mostrarInformacoes(indice); */
     });
 });
 
-function marcarBotaoSelecionado(botao) {
+/* function marcarBotaoSelecionado(botao) {
     botao.classList.add("selecionado");
 }
 
@@ -47,7 +53,7 @@ function mostrarInformacoes(indice) {
 }
 
 function esconderInformacoesAtivas() {
-    const informacoesAtiva = document.querySelector(".informacoes.ativa");
+    let informacoesAtiva = document.querySelector(".informacoes.ativa");
     informacoesAtiva.classList.remove("ativa");
 }
 
@@ -56,11 +62,11 @@ function mostrarImagemDeFundo(indice) {
 }
 
 function esconderImagemAtiva() {
-    const imagemAtiva = document.querySelector(".ativa");
+    let imagemAtiva = document.querySelector(".ativa");
     imagemAtiva.classList.remove("ativa");
 }
 
 function desativarBotaoSelecionado() {
-    const botaoSelecionado = document.querySelector(".selecionado");
+    let botaoSelecionado = document.querySelector(".selecionado");
     botaoSelecionado.classList.remove("selecionado");
-}
+} */
